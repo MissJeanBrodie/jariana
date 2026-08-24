@@ -15,7 +15,7 @@ function Placard({ art, index }) {
 
 export default function CardGallery() {
   const { artworks, loading } = useArtworks()
-  const [a, b, ...rest] = artworks
+  const shown = artworks.slice(0, 10)
 
   return (
     <main className="cards">
@@ -27,44 +27,24 @@ export default function CardGallery() {
         </div>
         <p className="cards__note">
           Placeholder imagery — promotional stills from <em>Malcolm in the Middle</em>, 2000–2006 —
-          hung salon-style. {loading ? 'Hanging the show…' : `${artworks.length} plates on view.`}
+          hung salon-style. {loading ? 'Hanging the show…' : `${shown.length} plates on view.`}
         </p>
       </header>
 
-      {/* Featured diptych — the "two card pics" */}
-      {a && b && (
-        <section className="diptych" aria-label="Featured diptych">
-          {[a, b].map((art, i) => (
-            <figure className="plate plate--feature" key={art.id} style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="plate__frame plate__frame--feature">
-                <img src={art.img} alt={art.title} loading="lazy" />
-              </div>
-              <Placard art={art} index={i} />
-            </figure>
-          ))}
-        </section>
-      )}
-
-      <div className="cards__rule">
-        <span>Gallery II — The Open Wall</span>
-        <span>Salon hang</span>
-      </div>
-
-      {/* Masonry of the rest */}
-      <section className="masonry" aria-label="Collection">
-        {rest.map((art, i) => (
-          <figure className="plate" key={art.id} style={{ animationDelay: `${Math.min(i, 12) * 0.04}s` }}>
+      <section className="cards__grid" aria-label="Collection">
+        {shown.map((art, i) => (
+          <figure className="plate" key={art.id} style={{ animationDelay: `${Math.min(i, 9) * 0.06}s` }}>
             <div className="plate__frame">
               <img src={art.img} alt={art.title} loading="lazy" />
             </div>
-            <Placard art={art} index={i + 2} />
+            <Placard art={art} index={i} />
           </figure>
         ))}
       </section>
 
       <footer className="cards__foot">
         <span>Unnamed Art Project · Gallery I</span>
-        <Link to="/museum" className="cards__cta">See it as an infinite hall →</Link>
+        <Link to="/museum" className="cards__cta">Infinite hall →</Link>
       </footer>
     </main>
   )

@@ -33,7 +33,7 @@ export default function Landing() {
       </nav>
 
       <footer className="landing__foot">
-        <span>Unnamed Art Project · two minimalist galleries</span>
+        <span>Unnamed Art Project · two galleries</span>
         <span>Placeholder imagery © respective rights holders, shown in prototype</span>
       </footer>
     </main>
