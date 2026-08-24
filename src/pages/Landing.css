@@ -39,7 +39,7 @@
 .landing__title {
   font-family: 'Fraunces', serif;
   font-weight: 300;
-  font-size: clamp(4rem, 16vw, 13rem);
+  font-size: clamp(1.6rem, 6.4vw, 5.2rem);
   line-height: 0.82;
   letter-spacing: -0.04em;
   margin: 0;
