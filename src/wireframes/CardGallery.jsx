@@ -22,7 +22,7 @@ export default function CardGallery() {
       <header className="cards__masthead">
         <Link to="/" className="cards__back">← Lobby</Link>
         <div className="cards__title-wrap">
-          <p className="cards__kicker">Jariana Skibidi Museum · Gallery I</p>
+          <p className="cards__kicker">Unnamed Art Project · Gallery I</p>
           <h1 className="cards__title">The Card Gallery</h1>
         </div>
         <p className="cards__note">
@@ -63,7 +63,7 @@ export default function CardGallery() {
       </section>
 
       <footer className="cards__foot">
-        <span>Jariana Skibidi Museum · Gallery I</span>
+        <span>Unnamed Art Project · Gallery I</span>
         <Link to="/museum" className="cards__cta">See it as an infinite hall →</Link>
       </footer>
     </main>

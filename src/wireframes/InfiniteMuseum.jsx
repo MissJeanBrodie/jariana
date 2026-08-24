@@ -266,7 +266,7 @@ export default function InfiniteMuseum() {
       <header className="museum__top">
         <Link to="/" className="museum__back">← Lobby</Link>
         <div className="museum__id">
-          <span className="museum__id-num">Jariana Skibidi Museum · Gallery II</span>
+          <span className="museum__id-num">Unnamed Art Project · Gallery II</span>
           <span className="museum__id-name">The Infinite Museum</span>
         </div>
         <div className="museum__count">
@@ -288,7 +288,7 @@ export default function InfiniteMuseum() {
       <aside className={`museum__placard ${focused ? 'is-open' : ''}`} aria-hidden={!focused}>
         {focused && (
           <>
-            <p className="museum__placard-eyebrow">Jariana Skibidi Museum · Placeholder Collection</p>
+            <p className="museum__placard-eyebrow">Unnamed Art Project · Placeholder Collection</p>
             <h2 className="museum__placard-title">{focused.title}</h2>
             <p className="museum__placard-meta">{seasonLabel(focused)}</p>
             <p className="museum__placard-line">Promotional still on broadcast emulsion</p>

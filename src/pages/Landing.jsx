@@ -5,9 +5,9 @@ export default function Landing() {
   return (
     <main className="landing">
       <header className="landing__head">
-        <p className="landing__kicker">The Jariana Skibidi Museum · for Jackson &amp; Ariana</p>
+        <p className="landing__kicker">The Unnamed Art Project · for Jackson &amp; Ariana</p>
         <h1 className="landing__title">
-          JARIANA<span className="landing__dot">.</span>
+          Unnamed Art Project<span className="landing__dot">.</span>
         </h1>
         <p className="landing__sub">
           A private Skibidi museum. The walls currently hold placeholder imagery —
@@ -33,7 +33,7 @@ export default function Landing() {
       </nav>
 
       <footer className="landing__foot">
-        <span>Jariana Skibidi Museum · two minimalist galleries</span>
+        <span>Unnamed Art Project · two minimalist galleries</span>
         <span>Placeholder imagery © respective rights holders, shown in prototype</span>
       </footer>
     </main>

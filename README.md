@@ -1,5 +1,8 @@
-# Unnamed Art project
+# Unnamed Art Project
+
 A small private museum for **Jackson**,
+shipped as two minimalist galleries — both working hi-fi prototypes you can click through,
+responsive down to phone screens (touch pan/zoom on the infinite canvas).
 
 > **The images are placeholders.** Every picture is a promotional still from *Malcolm in the
 > Middle* (2000–2006), pulled live from a free API purely to stand in for layout and mood. They
