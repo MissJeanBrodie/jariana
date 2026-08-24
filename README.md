@@ -1,5 +1,4 @@
-# Jariana Skibidi Museum
-
+# Unnamed Art project
 A small private museum for **Jackson**,
 
 > **The images are placeholders.** Every picture is a promotional still from *Malcolm in the
