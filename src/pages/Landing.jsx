@@ -10,7 +10,7 @@ export default function Landing() {
           Unnamed Art Project<span className="landing__dot">.</span>
         </h1>
         <p className="landing__sub">
-          A private Skibidi museum. The walls currently hold placeholder imagery —
+          A private museum. The walls currently hold placeholder imagery —
           promotional stills from <em>Malcolm in the Middle</em> (2000–2006) — standing in
           until the real collection is hung. Two galleries to wander.
         </p>
