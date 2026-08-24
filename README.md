@@ -4,7 +4,7 @@ A small private museum for **Jackson**,
 
 > **The images are placeholders.** Every picture is a promotional still from *Malcolm in the
 > Middle* (2000–2006), pulled live from a free API purely to stand in for layout and mood. They
-> are meant to be swapped out for Jackson and Ariana's real photographs / artwork. None of the
+> are meant to be swapped out for Jackson's real photographs / artwork. None of the
 > placeholder imagery is owned or licensed here.
 
 Two deliberately distinct minimalist directions:
