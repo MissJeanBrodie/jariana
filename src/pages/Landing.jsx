@@ -7,7 +7,7 @@ export default function Landing() {
       <header className="landing__head">
         <p className="landing__kicker">The Unnamed Art Project</p>
         <h1 className="landing__title">
-          Unnamed Art Project<span className="landing__dot">.</span>
+          Unnamed Art Project
         </h1>
         <p className="landing__sub">
           A private museum. The walls currently hold placeholder imagery —
