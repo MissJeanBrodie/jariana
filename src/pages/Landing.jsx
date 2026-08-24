@@ -5,7 +5,7 @@ export default function Landing() {
   return (
     <main className="landing">
       <header className="landing__head">
-        <p className="landing__kicker">The Unnamed Art Project · for Jackson &amp; Ariana</p>
+        <p className="landing__kicker">The Unnamed Art Project</p>
         <h1 className="landing__title">
           Unnamed Art Project<span className="landing__dot">.</span>
         </h1>
