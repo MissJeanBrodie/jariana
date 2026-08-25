@@ -27,7 +27,7 @@ export default function Landing() {
         <Link to="/museum" className="door door--02">
           <span className="door__num">02</span>
           <span className="door__name">The Infinite Museum</span>
-          <span className="door__desc">A boundless hall. Drag to roam, scroll to zoom into any frame.</span>
+          <span className="door__desc">A boundless hall.</span>
           <span className="door__enter">Enter the gallery →</span>
         </Link>
       </nav>
