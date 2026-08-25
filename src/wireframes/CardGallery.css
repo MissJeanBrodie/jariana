@@ -25,7 +25,7 @@
 
 .cards__back {
   grid-area: back;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -121,7 +121,7 @@
   line-height: 1.35;
 }
 .plate__acc {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.64rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -138,7 +138,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;

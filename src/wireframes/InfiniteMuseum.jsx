@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Application, Container, Sprite, Graphics, Text, TextStyle, Assets } from 'pixi.js'
 import { Viewport } from 'pixi-viewport'
-import { useArtworks, seasonLabel, longDate } from '../data/useArtworks.js'
+import { useArtworks } from '../data/useArtworks.js'
 import './InfiniteMuseum.css'
 
 // ---- layout constants for the salon wall ----
@@ -26,8 +26,8 @@ function drawFrame(w, h) {
   const g = new Graphics()
   g.roundRect(-FRAME + 6, -FRAME + 12, w + FRAME * 2, h + FRAME * 2, 4).fill({ color: 0x05040a, alpha: 0.55 }) // cast shadow
   g.rect(-FRAME, -FRAME, w + FRAME * 2, h + FRAME * 2).fill(0x0a0805) // outer lip
-  g.rect(-FRAME + 3, -FRAME + 3, w + (FRAME - 3) * 2, h + (FRAME - 3) * 2).fill(0xb89154) // brass
-  g.rect(-6, -6, w + 12, h + 12).fill(0x8a6b38) // inner bevel
+  g.rect(-FRAME + 3, -FRAME + 3, w + (FRAME - 3) * 2, h + (FRAME - 3) * 2).fill(0x4a2d5e) // deep purple
+  g.rect(-6, -6, w + 12, h + 12).fill(0x2d1a3a) // inner bevel
   g.rect(-2, -2, w + 4, h + 4).fill(0x07060c) // mat reveal behind image
   return g
 }
@@ -37,7 +37,7 @@ function drawPlacard(w, h, art, style) {
   const plateW = Math.min(w, 230)
   const plate = new Graphics()
   plate.rect((w - plateW) / 2, h + 22, plateW, 30).fill(0x161009)
-  plate.rect((w - plateW) / 2, h + 22, plateW, 2).fill(0xc9a86a)
+  plate.rect((w - plateW) / 2, h + 22, plateW, 2).fill(0x6a3d8a)
   c.addChild(plate)
   const label = new Text({ text: art.title.toUpperCase(), style })
   label.anchor.set(0.5, 0)
@@ -52,7 +52,6 @@ export default function InfiniteMuseum() {
   const { artworks, loading } = useArtworks()
 
   const [zoom, setZoom] = useState(100)
-  const [focused, setFocused] = useState(null)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -124,10 +123,7 @@ export default function InfiniteMuseum() {
         piece.position.set(x, y)
         piece.addChild(drawFrame(w, h))
         piece.addChild(drawPlacard(w, h, art, placardStyle))
-        piece.eventMode = 'static'
-        piece.cursor = 'pointer'
         piece.__meta = { art, cx: x + w / 2, cy: y + h / 2, w, h }
-        piece.on('pointertap', () => focusPiece(piece))
         viewport.addChild(piece)
         pieces.push(piece)
 
@@ -201,15 +197,6 @@ export default function InfiniteMuseum() {
       viewport.on('zoomed', onMove)
       onMove()
 
-      function focusPiece(p) {
-        const m = p.__meta
-        const targetW = (m.w + FRAME * 2) * 2.4
-        viewport.snap(m.cx, m.cy, { time: 850, ease: 'easeInOutSine', removeOnComplete: true, removeOnInterrupt: true })
-        viewport.snapZoom({ width: targetW, time: 850, ease: 'easeInOutSine', removeOnComplete: true, removeOnInterrupt: true })
-        setFocused(m.art)
-        setTimeout(onMove, 900)
-      }
-
       const onResize = () => {
         viewport.resize(host.clientWidth, host.clientHeight, worldW, worldH)
         // re-fit on orientation change so frames stay a usable size
@@ -233,7 +220,6 @@ export default function InfiniteMuseum() {
             scale: home,
             ease: 'easeInOutSine',
           })
-          setFocused(null)
           setTimeout(onMove, 950)
         },
         zoomBy: (pct) => {
@@ -270,12 +256,12 @@ export default function InfiniteMuseum() {
           <span className="museum__id-name">The Infinite Museum</span>
         </div>
         <div className="museum__count">
-          {loading ? 'unrolling the canvas…' : `${artworks.length} works hung`}
+          {loading ? 'unrolling the canvas…' : <><span className="museum__count-num">{artworks.length}</span> works hung</>}
         </div>
       </header>
 
       <div className="museum__hint" data-ready={ready}>
-        drag to roam · scroll to zoom · click a frame to step closer
+        drag to roam · scroll to zoom
       </div>
 
       <div className="museum__controls">
@@ -285,20 +271,6 @@ export default function InfiniteMuseum() {
         <button className="museum__home" onClick={() => apiRef.current?.goHome()}>Reset view</button>
       </div>
 
-      <aside className={`museum__placard ${focused ? 'is-open' : ''}`} aria-hidden={!focused}>
-        {focused && (
-          <>
-            <p className="museum__placard-eyebrow">Unnamed Art Project · Placeholder Collection</p>
-            <h2 className="museum__placard-title">{focused.title}</h2>
-            <p className="museum__placard-meta">{seasonLabel(focused)}</p>
-            <p className="museum__placard-line">Promotional still on broadcast emulsion</p>
-            <p className="museum__placard-line">{longDate(focused)}</p>
-            <button className="museum__placard-close" onClick={() => setFocused(null)}>
-              Step back ×
-            </button>
-          </>
-        )}
-      </aside>
     </main>
   )
 }

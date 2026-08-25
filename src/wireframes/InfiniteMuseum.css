@@ -1,12 +1,12 @@
 .museum {
-  --brass: #c9a86a;
+  --brass: #4a2d5e;
   --void: #0b0a0f;
   position: fixed;
   inset: 0;
   background: var(--void);
-  color: #ece3d0;
+  color: #ffffff;
   overflow: hidden;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .museum__stage {
@@ -28,7 +28,7 @@
   pointer-events: none;
   background:
     radial-gradient(120% 90% at 50% 30%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
-    radial-gradient(60% 40% at 50% 0%, rgba(201, 168, 106, 0.08), transparent 70%);
+    radial-gradient(60% 40% at 50% 0%, rgba(74, 45, 94, 0.12), transparent 70%);
   z-index: 2;
 }
 
@@ -50,7 +50,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b9ae97;
+  color: #ffffff;
   transition: color 0.2s ease;
 }
 .museum__back:hover { color: var(--brass); }
@@ -62,10 +62,11 @@
   gap: 0.25rem;
 }
 .museum__id-num {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.62rem;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: #ffffff;
 }
 .museum__id-name {
   font-family: 'Cormorant Garamond', serif;
@@ -78,9 +79,12 @@
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #8a8170;
+  color: #ffffff;
   min-width: 9rem;
   text-align: right;
+}
+.museum__count-num {
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 /* ---------- hint ---------- */
@@ -93,7 +97,7 @@
   font-size: 0.66rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #9a8f78;
+  color: #ffffff;
   opacity: 0;
   transition: opacity 1s ease 0.4s, transform 1s ease 0.4s;
   pointer-events: none;
@@ -117,14 +121,14 @@
   gap: 0.5rem;
   background: rgba(13, 11, 18, 0.7);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(201, 168, 106, 0.25);
+  border: 1px solid rgba(74, 45, 94, 0.4);
   padding: 0.7rem 0.55rem;
   border-radius: 2px;
 }
 .museum__controls button {
   background: none;
   border: none;
-  color: #ece3d0;
+  color: #ffffff;
   font-family: inherit;
   font-size: 1.1rem;
   width: 2rem;
@@ -134,13 +138,13 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 .museum__controls button:hover {
-  background: rgba(201, 168, 106, 0.18);
+  background: rgba(74, 45, 94, 0.3);
   color: var(--brass);
 }
 .museum__zoom {
   font-size: 0.66rem;
   letter-spacing: 0.08em;
-  color: #b9ae97;
+  color: #ffffff;
   padding: 0.1rem 0;
 }
 .museum__home {
@@ -149,9 +153,9 @@
   font-size: 0.6rem !important;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #8a8170 !important;
+  color: #ffffff !important;
   padding: 0.4rem 0.2rem 0.1rem !important;
-  border-top: 1px solid rgba(201, 168, 106, 0.2) !important;
+  border-top: 1px solid rgba(74, 45, 94, 0.5) !important;
   margin-top: 0.2rem;
 }
 

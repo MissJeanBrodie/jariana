@@ -22,13 +22,12 @@
 }
 
 .landing__head {
-  max-width: 46rem;
   position: relative;
   animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .landing__kicker {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.72rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
@@ -44,6 +43,8 @@
   letter-spacing: -0.04em;
   margin: 0;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .landing__dot {
@@ -53,7 +54,7 @@
 .landing__sub {
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.5;
-  max-width: 34rem;
+  max-width: 40rem;
   margin: 2rem 0 0;
   color: #46412f;
 }
@@ -114,7 +115,7 @@
 
 .door__enter {
   margin-top: 0.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -133,7 +134,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Fraunces', serif;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   color: #8c8470;
