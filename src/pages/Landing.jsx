@@ -20,7 +20,7 @@ export default function Landing() {
         <Link to="/cards" className="door door--01">
           <span className="door__num">01</span>
           <span className="door__name">The Card Gallery</span>
-          <span className="door__desc">An editorial wall. Two featured plates, then a quiet masonry of stills.</span>
+          <span className="door__desc">A wall of paintings.</span>
           <span className="door__enter">Enter the gallery →</span>
         </Link>
 
