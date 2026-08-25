@@ -32,7 +32,7 @@
   letter-spacing: 0.32em;
   text-transform: uppercase;
   margin: 0 0 1.5rem;
-  color: #8a2d1f;
+  color: #4a2d5e;
 }
 
 .landing__title {
@@ -48,7 +48,7 @@
 }
 
 .landing__dot {
-  color: #8a2d1f;
+  color: #4a2d5e;
 }
 
 .landing__sub {
@@ -95,7 +95,7 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
-  color: #8a2d1f;
+  color: #4a2d5e;
 }
 
 .door__name {
