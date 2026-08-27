@@ -107,16 +107,46 @@ export default function InfiniteMuseum() {
       const wash = new Graphics().rect(0, 0, worldWGuess * 2, worldWGuess * 2).fill(0x14121b)
       viewport.addChild(wash)
 
+      // Limit concurrent image loads so the browser doesn't try to decode
+      // 115 full-res JPEGs simultaneously (main cause of jank during init).
+      const MAX_CONCURRENT_LOADS = 8
+      let activeLoads = 0
+      const loadQueue = []
+
+      function processQueue() {
+        while (activeLoads < MAX_CONCURRENT_LOADS && loadQueue.length) {
+          const { art, piece, w, h, disposedRef } = loadQueue.shift()
+          activeLoads++
+          Assets.load(art.img)
+            .then((tex) => {
+              if (disposedRef.disposed || piece.destroyed) return
+              const sprite = new Sprite(tex)
+              const s = Math.max(w / tex.width, h / tex.height)
+              sprite.scale.set(s)
+              sprite.x = (w - tex.width * s) / 2
+              sprite.y = (h - tex.height * s) / 2
+              const mask = new Graphics().rect(0, 0, w, h).fill(0xffffff)
+              sprite.mask = mask
+              piece.addChildAt(mask, 1)
+              piece.addChildAt(sprite, 1)
+            })
+            .catch(() => {})
+            .finally(() => {
+              activeLoads--
+              processQueue()
+            })
+        }
+      }
+
       const pieces = []
       artworks.forEach((art) => {
         let col = 0
         for (let i = 1; i < cols; i++) if (colBottoms[i] < colBottoms[col]) col = i
         const aspect = ASPECTS[Math.floor(rand() * ASPECTS.length)]
-        const scale = 0.82 + rand() * 0.7
+        const scale = 0.6 + rand() * 0.4
         const w = COL_W * scale
         const h = w * aspect
-        const jitterX = (rand() - 0.5) * 60
-        const x = MARGIN + col * (COL_W + GAP_X) + (COL_W - w) / 2 + jitterX
+        const x = MARGIN + col * (COL_W + GAP_X) + (COL_W - w) / 2
         const y = colBottoms[col]
 
         const piece = new Container()
@@ -127,24 +157,14 @@ export default function InfiniteMuseum() {
         viewport.addChild(piece)
         pieces.push(piece)
 
-        // lazy-load the still, then cover-fit it into the opening
-        Assets.load(art.img)
-          .then((tex) => {
-            if (disposed || piece.destroyed) return
-            const sprite = new Sprite(tex)
-            const s = Math.max(w / tex.width, h / tex.height)
-            sprite.scale.set(s)
-            sprite.x = (w - tex.width * s) / 2
-            sprite.y = (h - tex.height * s) / 2
-            const mask = new Graphics().rect(0, 0, w, h).fill(0xffffff)
-            sprite.mask = mask
-            piece.addChildAt(mask, 1)
-            piece.addChildAt(sprite, 1)
-          })
-          .catch(() => {})
+        // queue the image load (throttled to MAX_CONCURRENT_LOADS at a time)
+        loadQueue.push({ art, piece, w, h, disposedRef: { disposed } })
 
         colBottoms[col] = y + h + FRAME * 2 + 60 + GAP_Y
       })
+
+      // start processing the image load queue (8 at a time)
+      processQueue()
 
       const worldW = MARGIN * 2 + cols * (COL_W + GAP_X)
       const worldH = Math.max(...colBottoms) + MARGIN
@@ -174,11 +194,14 @@ export default function InfiniteMuseum() {
       viewport.moveCenter(worldW / 2, centerY())
 
       let raf = false
+      let lastChromeUpdate = 0
       const updateChrome = () => {
         raf = false
+        lastChromeUpdate = performance.now()
         setZoom(Math.round((viewport.scale.x / home) * 100))
       }
       const onMove = () => {
+        const now = performance.now()
         const b = viewport.getVisibleBounds()
         for (const p of pieces) {
           const m = p.__meta
@@ -188,7 +211,8 @@ export default function InfiniteMuseum() {
             m.cy + m.h > b.y - 200 &&
             m.cy - m.h < b.y + b.height + 200
         }
-        if (!raf) {
+        // throttle zoom% label updates to once per 100ms
+        if (!raf && now - lastChromeUpdate > 100) {
           raf = true
           requestAnimationFrame(updateChrome)
         }
