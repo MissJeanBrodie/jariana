@@ -1,6 +1,6 @@
 .landing {
   min-height: 100%;
-  background: #f4f1ea;
+  background: #f4dfe1;
   color: #16140f;
   padding: clamp(2rem, 6vw, 6rem);
   display: flex;
